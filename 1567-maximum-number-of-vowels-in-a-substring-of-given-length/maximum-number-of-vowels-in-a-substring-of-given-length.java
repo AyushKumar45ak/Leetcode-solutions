@@ -1,17 +1,19 @@
 class Solution {
     public int maxVowels(String s, int k) {
-        String vowels="aeiou";
+        String vowel="aieou";
         HashSet <Character> set = new HashSet <> ();
-        int count=0;
-        for(char i:vowels.toCharArray()){
-            set.add(i);
+        for(char c:vowel.toCharArray()){
+            set.add(c);
         }
+        int max=0;
+        int count=0;
         for(int i=0;i<k;i++){
             if(set.contains(s.charAt(i))){
                 count++;
             }
         }
-        int max=count;
+        max=count;
+        int ans=0;
         for(int i=k;i<s.length();i++){
             if(set.contains(s.charAt(i-k))){
                 count--;
