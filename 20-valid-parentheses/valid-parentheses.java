@@ -1,29 +1,23 @@
-import java.util.Stack;
-
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-
-        for (char ch : s.toCharArray()) {
-
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } else {
-
-                if (stack.isEmpty()) {
-                    return false;
-                }
-
-                char top = stack.pop();
-
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
+        Stack <Character> st = new Stack <> ();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                st.push(')');
+            }
+            else if(s.charAt(i)=='{'){
+                st.push('}');
+            }
+            else if(s.charAt(i)=='['){
+                st.push(']');
+            }
+            else{
+                if(st.isEmpty() || st.pop() != s.charAt(i)){
                     return false;
                 }
             }
-        }
 
-        return stack.isEmpty();
+        }
+        return st.isEmpty();
     }
 }
